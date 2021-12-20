@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="row">
+    <h2 class="page-title text-center">
+        {% block page_title %}
+        {% endblock %}
+    </h2>
+</div>
+
+
+<div class="row pt-5 mt-5">
+    <div class="col-12 offset-0 offset-xl-2 col-xl-8">
+    {% block page_content %}
+        <p class="fs-2">
+            Det vi alla har sett fram emot under det (andra) deprimerade covid-året.
+        </p>
+        <p class="fw-bold fs-1">
+            Pepparkakshustävlingen 2021
+        </p>
+        <p class="fs-2">
+            Vi hoppas att ni haft roligt, kastat deg i väggen och testat era
+            förhållandens gränser! Det är exakt vad pepparkakshusbyggande handlar om! 🎅
+        </p>
+        <a class="btn btn-big m-5" href="{% url 'submission' %}">Spana in årets bidrag</a>
+    {% endblock %}
+    </div>
+</div>
+
+{% endblock %}
+

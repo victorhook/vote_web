@@ -1,0 +1,53 @@
+{% extends 'index.html' %}
+
+{% block page_title %}
+    Rösta!
+{% endblock %}
+
+{% block page_content %}
+
+    <form action="{% url 'vote' %}" method="POST" class="p-3">
+        {% csrf_token %}
+
+        <div class="mb-5 p-5 card">
+            <p class="fs-3 mb-5">
+                Vilket bidrag ger du din röst?
+            </p>
+            {% for submission in submissions %}
+                <div class="row">
+                    <label class="col-4">
+                        {{ submission.name }}
+                    </label>
+                    <input class="col-8" type="radio" name="submission" value="{{submission.id}}">
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="mb-5 p-5 card">
+            <p class="fs-3 mb-5">
+                Gissa bidragens valda tema:
+            </p>
+            {% for submission in submissions %}
+                <div class="row my-2">
+                    <label class="col-4">{{ submission.name }}</label>
+                    <div class="col-8">
+                        <input type="text" name="guess-submission-{{submission.id}}">
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="card my-2">
+            <div class="row my-5">
+                <label class="col-3">Fett hemliga kod:</label>
+                <div class="col-9">
+                    <input type="text" name="code" size="30">
+                </div>
+            </div>
+        </div>
+
+        <input type="submit" class="btn mt-5 px-5" value="Skicka">
+    </form>
+
+
+{% endblock %}

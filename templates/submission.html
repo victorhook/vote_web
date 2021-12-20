@@ -1,0 +1,43 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+
+{% block page_title %}
+    Se bidrag
+{% endblock %}
+
+{% block page_content %}
+
+    {% for submission in submissions %}
+        <div class="submission card m-5">
+            <div class="card-body">
+                <div class="card-title fw-bold p-3">{{ submission.name }}</div>
+
+                {% for file in submission.files %}
+                    <div class="my-5 mx-2 row">
+                        {% if file.is_video %}
+                            <video class="col-12" controls>
+                                <source src="/{{ file.file }}" type="video/webm">
+                            </video>
+                        {% else %}
+                            <div class="card-image col-12">
+                                <img class="img-fluid" src="/{{ file.file }}">
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+
+    <div class="card mb-5">
+        <div class="card-body">
+            <p class="fs-2 my-5">
+                Kikat klart på bidragen?
+            </p>
+            <a class="btn my-3" href="{% url 'vote' %}">Rösta här!</a>
+        </div>
+    </div>
+
+{% endblock %}

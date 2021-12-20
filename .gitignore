@@ -1,0 +1,8 @@
+static/uploads/
+db.sqlite3
+video_convert
+vote_web/settings.py
+*.pyc
+*/migrations/
+wsgi.py
+env/
