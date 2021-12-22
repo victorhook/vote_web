@@ -18,11 +18,11 @@
                     <div class="my-5 mx-2 row">
                         {% if file.is_video %}
                             <video class="col-12" controls>
-                                <source src="/{{ file.file }}" type="video/webm">
+                                <source src="/static/uploads/{{ file.file }}" type="video/webm">
                             </video>
                         {% else %}
                             <div class="card-image col-12">
-                                <img class="img-fluid" src="/{{ file.file }}">
+                                <img class="img-fluid" src="/static/uploads/{{ file.file }}">
                             </div>
                         {% endif %}
                     </div>
