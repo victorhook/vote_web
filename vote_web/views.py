@@ -36,6 +36,8 @@ def code_valid(code: str) -> bool:
 
 def vote(request):
     if request.method == 'POST':
+
+        """
         code = request.POST.get('code')
         if not code_exists(code):
             return render(request, 'error.html',
@@ -45,15 +47,22 @@ def vote(request):
             return render(request, 'error.html',
                 {'error':  'Den där koden har redan använts tillräckligt! Sluta fuska.'}
             )
+        """
 
+        if 'voter' not in request.POST:
+            return render(request, 'error.html',
+                {'error':  'Du måste skriva under med ditt namn när du röstar.'}
+            )
         if 'submission' not in request.POST:
             return render(request, 'error.html',
                 {'error':  'Du måste rösta på något av bidragen!'}
             )
 
+
         # Save vote
+        voter = request.POST['voter']
         vote_id = request.POST['submission']
-        Vote.objects.create(submission_id=vote_id).save()
+        Vote.objects.create(submission_id=vote_id, voter=voter).save()
 
         # Save guesses.
         for key in request.POST:

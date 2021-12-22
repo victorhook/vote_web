@@ -26,6 +26,7 @@ class SubmissionFile(models.Model):
 
 class Vote(models.Model):
     submission = models.ForeignKey(Submission, on_delete=models.CASCADE)
+    voter = models.CharField(max_length=120)
 
     def __str__(self) -> str:
         return str(self.submission)
