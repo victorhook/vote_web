@@ -49,18 +49,18 @@ def vote(request):
             )
         """
 
-        if 'voter' not in request.POST:
-            return render(request, 'error.html',
-                {'error':  'Du måste skriva under med ditt namn när du röstar.'}
-            )
         if 'submission' not in request.POST:
             return render(request, 'error.html',
                 {'error':  'Du måste rösta på något av bidragen!'}
             )
 
+        voter = request.POST.get('voter')
+        if not voter:
+            return render(request, 'error.html',
+                {'error':  'Du måste skriva under med ditt namn när du röstar.'}
+            )
 
         # Save vote
-        voter = request.POST['voter']
         vote_id = request.POST['submission']
         Vote.objects.create(submission_id=vote_id, voter=voter).save()
 
