@@ -7,7 +7,7 @@ def index(request):
 
 def get_subs():
     try:
-        subs = Submission.objects.all()
+        subs = Submission.objects.filter(visible=True)
         # Attach all files to the submission.
         for sub in subs:
             sub.files = SubmissionFile.objects.filter(submission = sub.id)
