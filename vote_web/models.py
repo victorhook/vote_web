@@ -10,6 +10,7 @@ class Submission(models.Model):
     team = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
     theme = models.CharField(max_length=100)
+    visible = models.BooleanField(default=True)
 
     def __str__(self) -> str:
         return str(self.team)

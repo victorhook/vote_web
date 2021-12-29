@@ -1,0 +1,1 @@
+Simple website to host the yearly gingerbread-house-competition.
